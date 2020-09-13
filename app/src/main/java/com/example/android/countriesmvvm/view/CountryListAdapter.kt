@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.item_country.view.*
 
 /**
  * TODO: add data binding
+ * TODO: maybe remove parameter arraylist instead have it as a variable that can be access (public)
  */
 class CountryListAdapter(var countriesList: ArrayList<Country>):
     RecyclerView.Adapter<CountryListAdapter.CountryViewHolder>() {
