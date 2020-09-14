@@ -1,25 +1,25 @@
 package com.example.android.countriesmvvm.model
 
+import com.example.android.countriesmvvm.di.DaggerApiComponent
 import io.reactivex.Single
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 /**
  * retrieve information from the backend
  */
 class CountriesService {
-    // this is like www.github.com and we use CountriesAPI to complete the request like kjason1998/RecordIt to get my github RecordIt repo
-    private val BASE_URL = "https://raw.githubusercontent.com"
-    private val api: CountriesAPI
+
+    @Inject
+    lateinit var api: CountriesAPI
 
     init {
-        // build the service that we are going to use
-        api = Retrofit.Builder() // create frame work for retrofit help get info from backend
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create()) // we use gson converter becuase we gonna get gson and we want to convert it to Country.kt
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // it is RxJava adapter transform data (country.kt) into an observable variable
-            .build().create(CountriesAPI::class.java)
+        /**
+         * DaggerApiComponent auto generate please do not forget to make sure when using kotlin
+         * change the gradle from annotationProcessor to kapt for the dagger dependencies
+         * add dont forget to add apply plugin: 'kotlin-kapt' on the top og build gradle app.
+         * and press rebuild
+         **/
+        DaggerApiComponent.create().inject(this) // this -> countries service
     }
 
     /**
