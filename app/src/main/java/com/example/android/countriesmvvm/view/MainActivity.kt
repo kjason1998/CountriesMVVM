@@ -47,6 +47,9 @@ class MainActivity : AppCompatActivity() {
             //?. if countries is not null
             countries?.let{
                 countriesAdapter.setCountriesData(it) // it here is countries if it is not null
+                countriesRecyclerView.visibility = View.VISIBLE
+                loadingRecyclerViewProgressBar.visibility = View.GONE
+                errorRecyclerViewText.visibility = View.GONE
             }
         })
 
