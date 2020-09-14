@@ -5,8 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.android.countriesmvvm.R
 import com.example.android.countriesmvvm.model.Country
+import com.example.android.countriesmvvm.util.getProgressDrawable
+import com.example.android.countriesmvvm.util.loadImage
 import kotlinx.android.synthetic.main.item_country.view.*
 
 /**
@@ -19,9 +22,15 @@ class CountryListAdapter(var countriesList: ArrayList<Country>):
     class CountryViewHolder(itemCountryView: View): RecyclerView.ViewHolder(itemCountryView){
 
         private val countryName = itemCountryView.countriesNameTextView
+        private val countryCapital = itemCountryView.countriesCapitalNameTextView
+        private val countryFlag = itemCountryView.flagImageView
+        private val progressDrawable = getProgressDrawable(itemCountryView.context)
+        // progressDrawable is a spinnr inside the spinner when it is being load up
 
         fun bind(country: Country){
             countryName.text = country.countryName
+            countryCapital.text = country.countryCapital
+            countryFlag.loadImage(country.countryFlagUrl, progressDrawable)
         }
     }
 

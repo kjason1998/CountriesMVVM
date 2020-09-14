@@ -28,6 +28,19 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/flagImageView"
         app:layout_constraintTop_toTopOf="parent"
+        tool:text="United Android"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/countriesCapitalNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/countriesNameTextView"
+        app:layout_constraintTop_toTopOf="parent"
         tool:text="United Android" />
 
 
