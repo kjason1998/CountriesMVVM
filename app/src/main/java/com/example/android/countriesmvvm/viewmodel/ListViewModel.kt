@@ -2,21 +2,29 @@ package com.example.android.countriesmvvm.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.android.countriesmvvm.di.DaggerServiceComponent
 import com.example.android.countriesmvvm.model.CountriesService
 import com.example.android.countriesmvvm.model.Country
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class ListViewModel: ViewModel() {
 
-    private val countriesService = CountriesService() // to connect the service to get data
+    @Inject
+    lateinit var countriesService: CountriesService
+    //private val countriesService = CountriesService() // to connect the service to get data
     private val disposable = CompositeDisposable() // close connection when this view model is close
 
     val countries = MutableLiveData<List<Country>>()
     val countryLoadError = MutableLiveData<Boolean>() // true for error false otherwise
     val loading = MutableLiveData<Boolean>() // if application loading the data from backend
+
+    init {
+        DaggerServiceComponent.create().inject(this) // giving view model the countries service
+    }
 
     fun refresh(){
         fetchCountries()
