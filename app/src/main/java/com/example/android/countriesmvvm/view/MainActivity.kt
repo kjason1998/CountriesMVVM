@@ -4,11 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.countriesmvvm.R
-import com.example.android.countriesmvvm.model.Country
 import com.example.android.countriesmvvm.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -25,6 +24,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.refresh()
 
         setRecyclerView()
+
+        //handle refresh when pull down
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = false
+            viewModel.refresh()
+        }
 
         observeViewModel()
     }
