@@ -22,6 +22,10 @@ class CountriesService {
             .build().create(CountriesAPI::class.java)
     }
 
+    /**
+     * this is called in view model
+     * Single means that observable only emits 1 value and then closes
+     */
     fun getCountries(): Single<List<Country>> {
         return api.getCountries()
     }
