@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.countriesmvvm.R
 import com.example.android.countriesmvvm.viewmodel.ListViewModel
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
          */
         countriesRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = countriesAdapter
+            adapter = SlideInBottomAnimationAdapter(countriesAdapter)
         }
     }
 
